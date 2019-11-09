@@ -1,6 +1,6 @@
 const Hapi = require('@hapi/hapi');
 const { Sequelize, Model, DataTypes } = require('sequelize');
-const { CREATED } = require('http-status');
+const { CREATED, OK, NO_CONTENT } = require('http-status');
 
 const sequelize = new Sequelize('informatica', 'informatica', 'informatica', {
     dialect: 'mysql',
@@ -40,17 +40,6 @@ const init = async () => {
     });
 
     server.route({
-        method: 'POST',
-        path: '/posts',
-        handler: async (request, h) => {
-            const { payload } = request;
-
-            const post = await Post.create(payload);
-            return h.response(post).code(CREATED);
-        }
-    });
-
-    server.route({
         method: 'GET',
         path: '/posts',
         handler: async (request, h) => {
@@ -64,6 +53,37 @@ const init = async () => {
         handler: async (request, h) => {
             const { id } = request.params;
             return await Post.findByPk(id);
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/posts',
+        handler: async (request, h) => {
+            const { payload } = request;
+            const post = await Post.create(payload);
+            return h.response(post).code(CREATED);
+        }
+    });
+
+    server.route({
+        method: 'PUT',
+        path: '/posts/{id}',
+        handler: async (request, h) => {
+            const { params: {id}, payload } = request;
+            await Post.update(payload, {where: {id} });
+            const post = await Post.findByPk(id);
+            return h.response(post).code(OK);
+        }
+    });
+
+    server.route({
+        method: 'DELETE',
+        path: '/posts/{id}',
+        handler: async (request, h) => {
+            const { id } = request.params;
+            await Post.destroy({ where: {id} });
+            return h.response().code(NO_CONTENT);
         }
     });
 
