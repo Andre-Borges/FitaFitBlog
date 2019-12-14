@@ -1,12 +1,19 @@
-import { Model } from "sequelize";
+import { Model } from 'sequelize';
 
-export default(sequelize, dataTypes) => {
-    class Post extends Model {}
+export default (sequelize, dataTypes) => {
+  class Post extends Model {}
 
-    Post.init({
-        title: dataTypes.STRING,
-        content: dataTypes.TEXT
-    }, { sequelize, modelName: 'Post'} );
+  Post.init({
+    title: dataTypes.STRING,
+    content: dataTypes.TEXT
+  }, { sequelize, modelName: 'post' });
 
-    return Post;
+  Post.associate = models => {
+    models.post.belongsTo(models.user);
+    models.post.hasMany(models.tag, {
+      as: 'tags'
+    });
+  };
+
+  return Post;
 };

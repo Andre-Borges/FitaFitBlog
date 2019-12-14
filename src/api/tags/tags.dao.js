@@ -1,26 +1,31 @@
-import { instances } from 'hapi-sequelizejs'
-
-const Tag = instances.getModel('Tag');
+import Boom from '@hapi/boom';
+import { instances } from 'hapi-sequelizejs';
+import { getObjectOr404 } from '../utils/database.utils';
 
 export default class TagsDAO {
-    findAll(where) {
-        return Tag.findAll(where);
-    }
+  model = instances.getModel('tag');
 
-    findById(id) {
-        return Tag.findById(id)
-    }
+  findAll(where) {
+    return this.model.findAll({ where });
+  }
 
-    create(data) {
-        return Tag.create(data);
-    }
+  async findByID(where) {
+    return getObjectOr404(this.model, { where });
+  }
 
-    async update(id, tag) {
-        await Tag.update(tag, { where: { id } });
-        return await this.findById(id);
-    }
+  create(tag) {
+    return this.model.create(tag);
+  }
 
-    destroy(id) {
-        return Tag.destroy({ where: { id }});
-    }
+  async update(where, data) {
+    const tag = await this.findByID(where)
+
+    return await tag.update(data);
+  }
+
+  async destroy(where) {
+    const tag = await this.findByID(where);
+
+    return tag.destroy();
+  }
 }

@@ -1,5 +1,0 @@
-npm install --save hapi-router@5
-
-npm i -S esm
-
-npm i -S @hapi/joi
