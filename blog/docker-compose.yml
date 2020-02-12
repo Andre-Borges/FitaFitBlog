@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: informatica
+      MYSQL_DATABASE: informatica
+      MYSQL_USER: informatica
+      MYSQL_PASSWORD: informatica
+    ports:
+      - '3306:3306'
