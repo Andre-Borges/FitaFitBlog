@@ -21,7 +21,7 @@
 3. Suba o banco de dados com o Docker:
 
 	```sh
-	$ docker-compose up
+	$ docker-compose up -d
 	```
 	
 4. Rode o projeto:
