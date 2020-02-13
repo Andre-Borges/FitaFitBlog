@@ -1,6 +1,6 @@
 ## API criada no módulo de Desenvolvimento WebRest com Node Uni-FACEF
 
-- API em Node utilizando HapiJS/MySQL.
+- API em Node utilizando HapiJS / MySQL.
 
 ## Blog
 
