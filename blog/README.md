@@ -1,4 +1,4 @@
-## API desenvolvida durante o módulo de Desenvolvimento WebRest com Node Uni-FACEF
+## API desenvolvida no módulo de Desenvolvimento WebRest com Node Uni-FACEF
 
 - API em Node utilizando HapiJS/MySQL.
 
@@ -18,7 +18,7 @@
     $ npm install
     ```
 	
-3 - Suba o banco de dados com o Docker 
+3 - Suba o banco de dados com o Docker:
 
 	```sh
 	$ docker-compose up -d
