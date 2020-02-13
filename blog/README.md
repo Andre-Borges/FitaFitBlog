@@ -18,7 +18,7 @@
     $ npm install
     ```
 	
-3 - Suba o banco de dados com o Docker:
+3. Suba o banco de dados com o Docker:
 
 	```sh
 	$ docker-compose up
