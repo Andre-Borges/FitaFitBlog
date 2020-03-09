@@ -5,5 +5,5 @@ $ node desafio.js
 ```
 
 ```sh
-$ node index.js.js
+$ node index.js
 ```
